@@ -1,0 +1,62 @@
+# Python 스크립트 (이미지 처리용 임시 파일)
+*.py
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# 임시 및 중복 이미지 파일들
+images/logo_animation_unoptimized.gif
+images/logo_animation_cropped*.gif
+images/*_frame_*.png
+images/original_frame_*.png
+images/transparent_frame_*.png
+
+# 작업 중 생성된 임시 파일
+*.tmp
+*.bak
+*~
+*.swp
+*.swo
+
+# OS 생성 파일
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# 에디터/IDE 파일
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.code-workspace
+
+# 로그 파일
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 의존성 디렉토리 (만약 사용한다면)
+node_modules/
+bower_components/
+
+# 빌드 결과물
+dist/
+build/
+*.min.js
+*.min.css
+
+# 환경 설정 파일
+.env
+.env.local
+.env.*.local
+
+# 백업 및 버전 관리
+*.orig
+*.rej

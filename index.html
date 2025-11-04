@@ -5,7 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>백그라운더 | High-Quality Marketing 100grounder</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="preload" href="images/logo_animation.gif" as="image" />
+  <link rel="stylesheet" href="mobile-optimization.css" />
+  <!-- 모바일: 정적 이미지만, 데스크톱: 중요 이미지들만 프리로드 -->
+  <link rel="preload" href="images/logo1.png" as="image" />
+  <link rel="preload" href="images/bg01.png" as="image" media="(min-width: 769px)" />
 </head>
 <body class="theme-100grounders"> <!-- theme-hightech, theme-100grounders-->
   <div class="grid-noise" aria-hidden="true"></div>
@@ -32,7 +35,10 @@
   <main>
     <section class="hero" id="hero">
       <div class="hero__bg" aria-hidden="true">
-        <img src="images/bg01.png" alt="" />
+        <picture>
+          <source srcset="images/optimized/bg01.webp" type="image/webp">
+          <img src="images/bg01.png" alt="" loading="lazy" />
+        </picture>
         <div class="hero__grid"></div>
         <div class="hero__flare"></div>
       </div>
@@ -207,21 +213,30 @@
       </div>
       <div class="showcase-grid">
         <article class="showcase-card">
-          <img src="images/bg03.png" alt="브랜드 컨설팅 레퍼런스" />
+          <picture>
+            <source srcset="images/optimized/bg03.webp" type="image/webp">
+            <img src="images/bg03.png" alt="브랜드 컨설팅 레퍼런스" loading="lazy" />
+          </picture>
           <div class="showcase-card__body">
             <h3>Brand Consulting</h3>
             <p>브랜드 미션 재정의와 채널 효율성 진단으로 핵심 메시지 집중도를 46% 향상.</p>
           </div>
         </article>
         <article class="showcase-card">
-          <img src="images/bg04.png" alt="퍼포먼스 마케팅 레퍼런스" />
+          <picture>
+            <source srcset="images/optimized/bg04.webp" type="image/webp">
+            <img src="images/bg04.png" alt="퍼포먼스 마케팅 레퍼런스" loading="lazy" />
+          </picture>
           <div class="showcase-card__body">
             <h3>Performance Marketing</h3>
             <p>크리에이티브 테스트 매트릭스로 ROAS +72%, 가입 전환율 1.8배 상승.</p>
           </div>
         </article>
         <article class="showcase-card">
-          <img src="images/bg05.png" alt="Growth Operation 레퍼런스" />
+          <picture>
+            <source srcset="images/optimized/bg05.webp" type="image/webp">
+            <img src="images/bg05.png" alt="Growth Operation 레퍼런스" loading="lazy" />
+          </picture>
           <div class="showcase-card__body">
             <h3>Growth Operation</h3>
             <p>자사몰 CRM 자동화와 팬덤 프로그램으로 LTV 2.4배 성장.</p>
@@ -277,6 +292,19 @@
     </section>
   </main>
 
+  <section class="logo-showcase" style="text-align: center; padding: 4rem 2rem; background: transparent;">
+    <div style="display: flex; gap: 2rem; justify-content: center; align-items: center; flex-wrap: wrap;">
+      <div style="text-align: center;">
+        <p style="margin-bottom: 1rem; color: #666; font-size: 0.9rem;">투명 배경</p>
+        <img src="images/logo_animation_transparent.gif" alt="100grounder animated logo (transparent)" style="max-width: 300px; width: 100%; height: auto;" />
+      </div>
+      <div style="text-align: center;">
+        <p style="margin-bottom: 1rem; color: #666; font-size: 0.9rem;">원본 배경</p>
+        <img src="images/logo_animation_cropped.gif" alt="100grounder animated logo (cropped)" style="max-width: 300px; width: 100%; height: auto;" />
+      </div>
+    </div>
+  </section>
+
   <footer class="site-footer">
     <div class="footer-grid">
       <div class="footer-card">
@@ -324,5 +352,6 @@
   </footer>
 
   <script src="script.js"></script>
+  <script src="mobile-optimization.js"></script>
 </body>
 </html>

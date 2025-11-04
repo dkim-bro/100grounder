@@ -1,0 +1,185 @@
+/* ==========================================
+   모바일 성능 최적화 스타일시트
+   ========================================== */
+
+/* 모바일에서 무거운 효과들을 비활성화 또는 간소화 */
+@media (max-width: 768px) {
+  /* 성능 킬러 1: backdrop-filter 완전 비활성화 (매우 무거움) */
+  .site-header,
+  .hero__stats div,
+  .intel-card,
+  .timeline__item,
+  .logos-marquee,
+  .contact-form,
+  .site-footer {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* 성능 킬러 2: 복잡한 box-shadow 간소화 */
+  .site-header,
+  .hero,
+  .intel-card,
+  .timeline__item,
+  .showcase-card,
+  .contact-form,
+  .site-footer {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* 성능 킬러 3: 무거운 애니메이션 제거 */
+  .ticker__list {
+    animation: none !important;
+  }
+
+  .hero__grid {
+    animation: none !important;
+    display: none !important;
+  }
+
+  .hero__flare {
+    animation: none !important;
+    opacity: 0.2 !important;
+    filter: none !important; /* blur 제거 */
+  }
+
+  .hero__orb img {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .logos-marquee__track {
+    animation: tickerMove 50s linear infinite !important; /* 속도 더 감소 */
+  }
+
+  /* 성능 킬러 4: 배경 효과 완전 제거 */
+  .grid-noise {
+    display: none !important;
+  }
+
+  .nebula {
+    display: none !important;
+  }
+
+  /* 성능 킬러 5: mix-blend-mode 비활성화 */
+  .hero__bg,
+  .hero__flare,
+  .grid-noise,
+  * {
+    mix-blend-mode: normal !important;
+  }
+
+  /* 성능 킬러 6: filter 효과 제거 */
+  .brand img,
+  .hero__orb img,
+  .logos-marquee img,
+  img {
+    filter: none !important;
+  }
+
+  /* transition 최적화 */
+  * {
+    transition-duration: 0.15s !important;
+    transition-timing-function: ease-out !important;
+  }
+
+  /* will-change는 필요한 곳에만 (과도한 사용은 역효과) */
+  .logos-marquee__track {
+    will-change: transform;
+    transform: translateZ(0); /* GPU 가속 강제 */
+  }
+
+  /* body 배경 gradient 간소화 */
+  body {
+    background: var(--color-bg) !important;
+  }
+
+  /* 복잡한 radial-gradient 제거 */
+  .hero__bg::before,
+  .hero__bg::after {
+    display: none !important;
+  }
+
+  /* 이미지 렌더링 최적화 */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* 폰트 렌더링 최적화 */
+  body,
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
+  }
+
+  /* 스크롤 성능 향상 */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* transform 3D 하드웨어 가속 활성화 (애니메이션되는 요소만) */
+  .hero__content,
+  .intel-card,
+  .timeline__item {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+}
+
+/* 저사양 디바이스를 위한 추가 최적화 */
+@media (max-width: 768px) and (hover: none) {
+  /* 호버 효과 제거 */
+  .intel-card:hover,
+  .timeline__item:hover,
+  .consulting-item:hover {
+    transform: none !important;
+    border-color: inherit !important;
+  }
+
+  .intel-card:hover::after {
+    opacity: 0 !important;
+  }
+
+  /* 무한 애니메이션 완전 제거 */
+  @keyframes tickerMove {
+    to { transform: none; }
+  }
+
+  @keyframes gridPulse {
+    to { opacity: 0.1; }
+  }
+
+  /* 폰트 최적화 */
+  * {
+    text-rendering: optimizeSpeed !important;
+  }
+}
+
+/* 다크모드 미디어 쿼리 지원 시 성능 향상 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 이미지 로딩 최적화 */
+img {
+  content-visibility: auto;
+  contain-intrinsic-size: 300px;
+}
+
+/* 스크롤 성능 향상 */
+html {
+  scroll-behavior: auto !important; /* smooth 스크롤 비활성화 */
+}
+
+body {
+  -webkit-overflow-scrolling: touch; /* iOS 스크롤 성능 향상 */
+}
